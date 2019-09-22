@@ -1,11 +1,10 @@
-#include "chatwindow.h"
+#include <server.h>
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    ChatWindow w;
-    w.show();
-
+    Server server(2424);
+    server.show();
     return a.exec();
 }

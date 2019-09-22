@@ -26,16 +26,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        chatwindow.cpp \
         main.cpp \
         server.cpp
 
 HEADERS += \
-        chatwindow.h \
         server.h
 
-FORMS += \
-        chatwindow.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

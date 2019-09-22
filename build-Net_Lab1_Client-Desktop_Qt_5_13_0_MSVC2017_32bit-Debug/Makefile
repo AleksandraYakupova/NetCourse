@@ -245,6 +245,7 @@ Makefile: ..\Net_Lab1_Client\Net_Lab1_Client.pro ..\..\..\..\Distrib\QT\5.13.0\m
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qt_config.prf \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\win32-msvc\qmake.conf \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\exclusive_builds.prf \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\msvc-version.conf \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\toolchain.prf \
@@ -271,6 +272,7 @@ Makefile: ..\Net_Lab1_Client\Net_Lab1_Client.pro ..\..\..\..\Distrib\QT\5.13.0\m
 		..\Net_Lab1_Client\Net_Lab1_Client.pro \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Widgets.prl \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Gui.prl \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Network.prl \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Core.prl \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\qtmain.prl
 	$(QMAKE) -o Makefile ..\Net_Lab1_Client\Net_Lab1_Client.pro -spec win32-msvc "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -442,6 +444,7 @@ Makefile: ..\Net_Lab1_Client\Net_Lab1_Client.pro ..\..\..\..\Distrib\QT\5.13.0\m
 ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qt_config.prf:
 ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\win32-msvc\qmake.conf:
 ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\spec_post.prf:
+.qmake.stash:
 ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\exclusive_builds.prf:
 ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\msvc-version.conf:
 ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\toolchain.prf:
@@ -468,6 +471,7 @@ Makefile: ..\Net_Lab1_Client\Net_Lab1_Client.pro ..\..\..\..\Distrib\QT\5.13.0\m
 ..\Net_Lab1_Client\Net_Lab1_Client.pro:
 ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Widgets.prl:
 ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Gui.prl:
+..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Network.prl:
 ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Core.prl:
 ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\qtmain.prl:
 qmake: FORCE
