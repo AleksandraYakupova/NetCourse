@@ -12,6 +12,7 @@ Server::Server(int port, QWidget *pwgt)
     connect(tcpServer, &QTcpServer::newConnection,
             this, &Server::slotNewConnection);
 
+    //для проверки полученных сообщений от клиента
     receivedMsgField = new QTextEdit;
     receivedMsgField->setReadOnly(true);
     QVBoxLayout *vBoxLayout = new QVBoxLayout;
@@ -42,8 +43,12 @@ void Server::readClient()
 {
     QTcpSocket *clientSocket = (QTcpSocket*)sender();
 
-    QByteArray msg(clientSocket->readAll());
-    sendToClients(msg);
+    QByteArray msg(clientSocket->readAll());//читаем все сообщение
+    //для проверки выводим его в receivedMsgField
+    receivedMsgField->setText(msg);
+    sendToClients(msg); //отправляем всем подключенным клиентам
+
+
     //QDataStream in(clientSocket);
     /*forever {
 

@@ -41,8 +41,9 @@ void Client::sendToServer()
     */
 
     //socket->write(qPrintable(msgToSend));//write принимает только const char*
-    QByteArray msgToSend("Hello");
-    socket->write(msgToSend);
+
+    QByteArray msgToSend = msgField->text().toUtf8();//Получаем введенное сообщение
+    socket->write(msgToSend);//отправляем его серверу
     socket->flush();
     msgField->setText("");//очищаем поле ввода
 }
@@ -50,4 +51,5 @@ void Client::sendToServer()
 void Client::readFromServer()
 {
     QByteArray msg(socket->readAll());//читаем
+    dialog->setText(msg);//отображаем в поле диалога
 }
