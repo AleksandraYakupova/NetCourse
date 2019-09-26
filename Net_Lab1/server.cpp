@@ -23,8 +23,11 @@ Server::Server(int port, QWidget *pwgt)
 void Server::slotNewConnection()
 {
     QTcpSocket *clientSocket = tcpServer->nextPendingConnection();//получаем сокет клиента
+    clients.push_back(clientSocket);//добавляем в список подключений
     connect(clientSocket, &QTcpSocket::disconnected,
-            [clientSocket] () {
+            [clientSocket, this] () {
+        int index = this->clients.indexOf(clientSocket);
+        this->clients.removeAt(index);//удаляем клиента из списка
         clientSocket->deleteLater(); //удаляем сокет при отсоединении
     });
     connect(clientSocket, &QTcpSocket::readyRead, //если новые данные поступили
@@ -40,6 +43,7 @@ void Server::readClient()
     QTcpSocket *clientSocket = (QTcpSocket*)sender();
 
     QByteArray msg(clientSocket->readAll());
+    sendToClients(msg);
     //QDataStream in(clientSocket);
     /*forever {
 
@@ -56,4 +60,13 @@ void Server::readClient()
 
     //Используем блокирующие сокеты
 
+}
+
+void Server::sendToClients(QByteArray msg)
+{
+    for (int i = 0; i < clients.size(); ++i)
+    {
+        QTcpSocket *clientSocket = clients.at(i);
+        clientSocket->write(msg);
+    }
 }

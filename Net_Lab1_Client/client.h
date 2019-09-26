@@ -20,6 +20,7 @@ private:
     QLineEdit* msgField;//поле для ввода сообщений
 public slots:
     void sendToServer();//отправляет сообщение серверу
+    void readFromServer();
 
 };
 

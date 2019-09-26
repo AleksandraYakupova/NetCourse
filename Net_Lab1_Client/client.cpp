@@ -8,7 +8,11 @@ Client::Client(QString host, int port, QWidget* pwgt)
     socket->connectToHost(host, port);
     msgField = new QLineEdit;
     sendToServer();
-    /*dialog = new QTextEdit;
+
+    //когда появились новые данные читаем их от сервера
+    connect(socket, &QTcpSocket::readyRead,
+            this, &Client::readFromServer);
+    dialog = new QTextEdit;
     dialog->setReadOnly(true);//поле только для чтения
 
     QPushButton* sendBtn = new QPushButton("&Send");
@@ -20,7 +24,7 @@ Client::Client(QString host, int port, QWidget* pwgt)
     vBoxLayout->addWidget(dialog);
     vBoxLayout->addWidget(msgField);
     vBoxLayout->addWidget(sendBtn);
-    setLayout(vBoxLayout);*/
+    setLayout(vBoxLayout);
 }
 
 void Client::sendToServer()
@@ -41,4 +45,9 @@ void Client::sendToServer()
     socket->write(msgToSend);
     socket->flush();
     msgField->setText("");//очищаем поле ввода
+}
+
+void Client::readFromServer()
+{
+    QByteArray msg(socket->readAll());//читаем
 }
