@@ -48,3 +48,5 @@ compile_commands.json
 
 # QtCreator local machine specific files for imported projects
 *creator.user*
+Net_Lab1/Net_Lab1.pro.user
+Net_Lab1_Client/Net_Lab1_Client.pro.user
