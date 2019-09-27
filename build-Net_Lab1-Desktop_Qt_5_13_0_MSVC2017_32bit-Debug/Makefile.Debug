@@ -283,6 +283,22 @@ debug\moc_server.cpp: ..\Net_Lab1\server.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qfiledevice.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qvector2d.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtouchdevice.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QTextEdit \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qframe.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextdocument.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextoption.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextcursor.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextformat.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qpen.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QVBoxLayout \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qboxlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayoutitem.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QTime \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qdatetime.h \
 		debug\moc_predefs.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\bin\moc.exe
 	D:\Distrib\QT\5.13.0\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include "D:/7 semester/NET/NetCourse/build-Net_Lab1-Desktop_Qt_5_13_0_MSVC2017_32bit-Debug/debug/moc_predefs.h" -ID:/Distrib/QT/5.13.0/msvc2017/mkspecs/win32-msvc -I"D:/7 semester/NET/NetCourse/Net_Lab1" -ID:/Distrib/QT/5.13.0/msvc2017/include -ID:/Distrib/QT/5.13.0/msvc2017/include/QtWidgets -ID:/Distrib/QT/5.13.0/msvc2017/include/QtGui -ID:/Distrib/QT/5.13.0/msvc2017/include/QtANGLE -ID:/Distrib/QT/5.13.0/msvc2017/include/QtNetwork -ID:/Distrib/QT/5.13.0/msvc2017/include/QtCore -I. -ID:\Distrib\VS2017\VC\Tools\MSVC\14.13.26128\ATLMFC\include -ID:\Distrib\VS2017\VC\Tools\MSVC\14.13.26128\include -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\Net_Lab1\server.h -o debug\moc_server.cpp
@@ -415,6 +431,22 @@ debug\main.obj: ..\Net_Lab1\main.cpp ..\Net_Lab1\server.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qfiledevice.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qvector2d.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtouchdevice.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QTextEdit \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qframe.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextdocument.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextoption.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextcursor.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextformat.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qpen.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QVBoxLayout \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qboxlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayoutitem.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QTime \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qdatetime.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QApplication \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qapplication.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qcoreapplication.h \
@@ -533,6 +565,22 @@ debug\server.obj: ..\Net_Lab1\server.cpp ..\Net_Lab1\server.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qfiledevice.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qvector2d.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtouchdevice.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QTextEdit \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qframe.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextdocument.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextoption.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextcursor.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextformat.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qpen.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QVBoxLayout \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qboxlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayoutitem.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QTime \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qdatetime.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\QTcpSocket \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\qtcpsocket.h
 

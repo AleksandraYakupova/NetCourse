@@ -25,10 +25,14 @@ void Server::slotNewConnection()
 {
     QTcpSocket *clientSocket = tcpServer->nextPendingConnection();//получаем сокет клиента
     clients.push_back(clientSocket);//добавляем в список подключений
+    sendCurrClientsNamesToNewClient(clientSocket);//отправляем список имен текущих участников
     connect(clientSocket, &QTcpSocket::disconnected,
             [clientSocket, this] () {
+        //отправляем всем имя отключившегося клиента
+        this->sendClientName(clientsNames[clientSocket]);
         int index = this->clients.indexOf(clientSocket);
         this->clients.removeAt(index);//удаляем клиента из списка
+        clientsNames.take(clientSocket);//а также из контейнера имен
         clientSocket->deleteLater(); //удаляем сокет при отсоединении
     });
     connect(clientSocket, &QTcpSocket::readyRead, //если новые данные поступили
@@ -43,35 +47,117 @@ void Server::readClient()
 {
     QTcpSocket *clientSocket = (QTcpSocket*)sender();
 
-    QByteArray msg(clientSocket->readAll());//читаем все сообщение
-    //для проверки выводим его в receivedMsgField
-    receivedMsgField->setText(msg);
-    sendToClients(msg); //отправляем всем подключенным клиентам
-
-
-    //QDataStream in(clientSocket);
-    /*forever {
-
-        if(!nextBlockSize) {//если размер след блока данных неизвестен
-            in >> nextBlockSize;//получаем размер след блока
+    QDataStream in(clientSocket);
+    QByteArray msg;
+    quint8 i;
+    nextBlockSize = 0;
+    bool msgWasSent = false;
+    forever {
+        if (!nextBlockSize) {
+            if (clientSocket->bytesAvailable() < sizeof(quint16)) {
+                break;
+            }
+            in >> nextBlockSize;
         }
-        if(clientSocket->bytesAvailable() < nextBlockSize) {
+
+        if (clientSocket->bytesAvailable() < nextBlockSize) {
             break;
         }
-        QByteArray msg;
-        in >> msg;//получаем передаваемое сообщение
-        receivedMsgField->setText(msg);
-    }*/
+        in >> i >> msg;
+        if (i) msgWasSent = true;
+        nextBlockSize = 0;
+    }
 
-    //Используем блокирующие сокеты
 
+    //QByteArray msg(clientSocket->readAll());//читаем все сообщение
+    //для проверки выводим его в receivedMsgField
+    if (!msgWasSent) { //если новый клиент отправил свое имя
+        QString newClientName(msg);
+        if (bannedClients.indexOf(newClientName) != -1) {//если есть такой в списке забаненных
+            sendBanMsgAndDisconnect(clientSocket);
+        }
+        clientsNames[clientSocket] = msg;
+        receivedMsgField->append("Name: ");
+        sendClientName(msg);//отправляем всем участникам чата имя нового клиента
+    }
+    else {
+        QString senderName = clientsNames[clientSocket];
+        sendMsgToClients(msg, senderName); //отправляем всем подключенным клиентам
+    }
+    receivedMsgField->append(msg);
 }
 
-void Server::sendToClients(QByteArray msg)
+void Server::sendMsgToClients(QByteArray msg, QString senderName)
 {
+    QByteArray block;
+    //Запаковываем сюда также время отправки
+    QTime sendingTime(QTime::currentTime());
+    QDataStream out(&block, QIODevice::ReadWrite);
+    out << quint16(0) << quint8(1) << msg << sendingTime << senderName;
+    out.device()->seek(0);
+    out << (quint16)(block.size() - sizeof(quint16));
     for (int i = 0; i < clients.size(); ++i)
     {
         QTcpSocket *clientSocket = clients.at(i);
-        clientSocket->write(msg);
+        clientSocket->write(block);
+        //clientSocket->write(sendingTime);
     }
+
+    banClient(clients.at(0));
+}
+
+
+//отправляет всем имя соединившегося или отсоединившегося участника
+void Server::sendClientName(QString clientName)
+{
+    QByteArray nameToSend = clientName.toUtf8();//Получаем введенное сообщение
+    QByteArray block;
+    QDataStream out(&block, QIODevice::ReadWrite);
+    out << quint16(0) << quint8(0) << nameToSend;
+    out.device()->seek(0);
+    out << (quint16)(block.size() - sizeof(quint16));
+    for (int i = 0; i < clients.size(); ++i)
+    {
+        QTcpSocket *clientSocket = clients.at(i);
+        clientSocket->write(block);
+        //clientSocket->write(sendingTime);
+    }
+}
+
+//Отправляет новому клиенту имена текущих участников чата
+void Server::sendCurrClientsNamesToNewClient(QTcpSocket *newClientSocket)
+{
+    QByteArray block;
+    QDataStream out(&block, QIODevice::ReadWrite);
+    out << quint16(0) << quint8(2);//2 - отправка имен текущих участников чата
+    QMapIterator<QTcpSocket*, QString> i(clientsNames);
+    int numberOfClients = clientsNames.size();
+    if (!numberOfClients) return;//если участников нет, ничего не отправляем
+    out << quint8(clientsNames.size());//значала запаковываем размер (количество клиентов)
+    while(i.hasNext()) {
+        i.next();
+        out << i.value();
+    }
+    newClientSocket->write(block);
+    newClientSocket->flush();
+}
+
+void Server::banClient(QTcpSocket *client)
+{
+    QString clientName = clientsNames[client];
+    bannedClients.push_back(clientName);//добавляем в список забанненных
+    sendBanMsgAndDisconnect(client);//сообщаем ему об этом
+}
+
+void Server::sendBanMsgAndDisconnect(QTcpSocket *client)
+{
+    QByteArray block;
+    QDataStream out(&block, QIODevice::ReadWrite);
+    out << quint16(0) << quint8(3);//3 - сообщение о бане
+    QString banMsg("Вы забанены и больше не можете отправлять сообщения");
+    out << banMsg;
+    client->write(block);
+    client->flush();
+
+    //Отсоединяем от сервера
 }

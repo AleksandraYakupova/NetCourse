@@ -27,10 +27,12 @@ CONFIG += c++11
 
 SOURCES += \
         client.cpp \
+        logindialog.cpp \
         main.cpp
 
 HEADERS += \
-        client.h
+        client.h \
+        logindialog.h
 
 FORMS +=
 

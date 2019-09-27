@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QTextEdit>
 #include <QVBoxLayout>
+#include<QTime>
 class Server : public QWidget
 {
     Q_OBJECT
@@ -12,12 +13,19 @@ private:
     quint16 nextBlockSize;//размер след блока данных от клиента
     QTextEdit* receivedMsgField;//для проверки полученного сообщения
     QVector <QTcpSocket *> clients;//все подключенные клиенты
+    QVector <QString> bannedClients;//забаненные клиенты
+    QMap<QTcpSocket*, QString> clientsNames;
+    void banClient(QTcpSocket *client);
+    void sendBanMsgAndDisconnect(QTcpSocket *client);
+
 public:
     Server(int port, QWidget *pwgt = 0);
 public slots:
     void slotNewConnection();
     void readClient();//здесь читаем данные от клиента
-    void sendToClients(QByteArray msg);//отправляем сообщение всем клиентам
+    void sendMsgToClients(QByteArray msg, QString senderName);//отправляем сообщение всем клиентам
+    void sendClientName(QString clientName);//отправляем всем участникам имя нового клиента
+    void sendCurrClientsNamesToNewClient(QTcpSocket *newClientSocket);
 };
 
 #endif // SERVER_H
