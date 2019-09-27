@@ -73,7 +73,7 @@ void Client::sendNameToServer()
     out << (quint16)(block.size() - sizeof(quint16));
     socket->write(block); //отправляем серверу свое имя
 
-    emit
+    emit connectionSucceeded();
 }
 
 void Client::sendMsgToServer()
@@ -136,8 +136,10 @@ void Client::readFromServer()
                 in >> userName;
                 usersNamesList.push_back(userName);
             }
-        } else if (cntrlByte == 3) {
+        } else if (cntrlByte == 3) { //Если получено сообщение о бане
             in >> banMsg;
+            dialog->setText(banMsg);
+            socket->disconnectFromHost();//сразу отсоединяем
         }
         nextBlockSize = 0;
     }
@@ -156,7 +158,7 @@ void Client::readFromServer()
             userConnectionStatus = "Disconnected";
         }
         dialog->append(userConnectionStatus + " " + newUserName);
-    } else if (cntrlByte == 3) {
+    } /*else if (cntrlByte == 3) {
         dialog->setText(banMsg);//просто печатаем сообщение бана
-    }
+    }*/
 }

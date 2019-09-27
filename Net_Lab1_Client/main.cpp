@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     {
         //Client client("localhost", 2424, dialog->getName());
         //client.connectToServer("localhost", 2424, dialog->getName());
-        //client.show();
+        client->show();
         int a2 = 0;
     }
     return a.exec();
