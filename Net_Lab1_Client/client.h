@@ -22,6 +22,9 @@ public:
     //Client(QString host, int port, QString name, QWidget* pwgt = 0);
     Client(QWidget* pwgt = 0);
     bool connectToServer(QString host, int port, QString name, QString &error);
+signals:
+    void connectionFailed();
+    void connectionSucceeded();
 private:
     QTcpSocket* socket;
     QTextEdit* dialog;//здесь показываются вводимые пользователями сообщения
@@ -40,6 +43,7 @@ public slots:
     void readFromServer();
     //void setErrorMsg();
     void setErrorMsg(QAbstractSocket::SocketError er);
+    void sendNameToServer();//для отправки имени после установления соединения
 
 };
 

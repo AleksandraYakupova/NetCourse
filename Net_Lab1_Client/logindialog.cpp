@@ -59,11 +59,16 @@ void LoginDialog::acceptButtonClicked()
     }
     port = portStr.toInt();
     QString errorMsg = "";
-    if (!client->connectToServer(ip, port, name, errorMsg)) {
+
+    connect(client, &Client::connectionFailed,
+            [this] () {
+        this->errorLbl->setText("Не удалось установить соединение");
+    });
+    client->connectToServer(ip, port, name, errorMsg);
+    /*if (!client->connectToServer(ip, port, name, errorMsg)) {
         errorLbl->setText(errorMsg);
         return;
-    }
-    emit accept();
+    }*/
 }
 
 QString LoginDialog::getName()

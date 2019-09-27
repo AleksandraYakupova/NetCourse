@@ -20,6 +20,7 @@ public:
     int getPort();
 public slots:
     void acceptButtonClicked();
+    //void acceptDialog();
 private:
     QLineEdit *nameFld;//поле для имени участника чата
     QString name;

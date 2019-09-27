@@ -40,22 +40,29 @@ Client::Client(QWidget* pwgt)
 
 void Client::setErrorMsg(QAbstractSocket::SocketError er)
 {
-    errorMsg = "Не удалось подключиться к серверу";
-    isConnectedSuccessfully = false;
+    /*errorMsg = "Не удалось подключиться к серверу";
+    isConnectedSuccessfully = false;*/
+    emit connectionFailed();
 }
 
-bool Client::connectToServer(QString host, int port, QString name, QString &error)
+bool Client::connectToServer(QString host, int port, QString _name, QString &error)
 {
+    name = _name;
     isConnectedSuccessfully = true;
     /*connect(socket, &QAbstractSocket::error,
             [this] () {
 
     });*/
     //c новым синтаксисом не работает
-    QObject::connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
+    connect(socket, SIGNAL(error(QAbstractSocket::SocketError)),
     this, SLOT(setErrorMsg(QAbstractSocket::SocketError)));
-    socket->connectToHost("localhost", 2424);
-    this->name = name;
+    connect( socket, SIGNAL(connected()), this, SLOT(sendNameToServer()) );
+    socket->connectToHost(host, port);
+    return true;
+}
+
+void Client::sendNameToServer()
+{
     QByteArray nameToSend = name.toUtf8();
 
     QByteArray block;
@@ -64,13 +71,9 @@ bool Client::connectToServer(QString host, int port, QString name, QString &erro
     out << quint16(0) << quint8(0) << nameToSend;
     out.device()->seek(0);
     out << (quint16)(block.size() - sizeof(quint16));
-
-    if (!isConnectedSuccessfully) { //если во время соединения произошла ошибка
-      error = errorMsg;
-      return false;
-    }
     socket->write(block); //отправляем серверу свое имя
-    return true;
+
+    emit
 }
 
 void Client::sendMsgToServer()
