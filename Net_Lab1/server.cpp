@@ -19,6 +19,8 @@ Server::Server(int port, QWidget *pwgt)
     vBoxLayout->addWidget(receivedMsgField);
     setLayout(vBoxLayout);
 
+    bannedClients << "Alex" << "Daniel";
+
 }
 
 void Server::slotNewConnection()
@@ -103,7 +105,7 @@ void Server::sendMsgToClients(QByteArray msg, QString senderName)
         //clientSocket->write(sendingTime);
     }
 
-    banClient(clients.at(0));
+    //banClient(clients.at(0));
 }
 
 

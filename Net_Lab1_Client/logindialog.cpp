@@ -64,6 +64,10 @@ void LoginDialog::acceptButtonClicked()
             [this] () {
         this->errorLbl->setText("Не удалось установить соединение");
     });
+    connect(client, &Client::connectionSucceeded,
+            [this] () {
+       emit accept();
+    });
     client->connectToServer(ip, port, name, errorMsg);
     /*if (!client->connectToServer(ip, port, name, errorMsg)) {
         errorLbl->setText(errorMsg);

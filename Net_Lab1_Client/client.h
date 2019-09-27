@@ -32,7 +32,7 @@ private:
     quint16 nextBlockSize;
     //QListWidget *usersNamesList;
     QListView *usersNamesListView;
-    QAbstractItemModel *model;
+    QStringListModel *model;
     QString name;//имя клиента
     QStringList usersNamesList;//имена всех участников чата
     QString errorMsg;
