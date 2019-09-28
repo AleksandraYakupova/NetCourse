@@ -49,18 +49,24 @@ OBJECTS_DIR   = debug
 
 SOURCES       = ..\Net_Lab1_Client\client.cpp \
 		..\Net_Lab1_Client\logindialog.cpp \
-		..\Net_Lab1_Client\main.cpp debug\moc_client.cpp \
-		debug\moc_logindialog.cpp
+		..\Net_Lab1_Client\main.cpp \
+		..\Net_Lab1_Client\usersnameslistmodel.cpp debug\moc_client.cpp \
+		debug\moc_logindialog.cpp \
+		debug\moc_usersnameslistmodel.cpp
 OBJECTS       = debug\client.obj \
 		debug\logindialog.obj \
 		debug\main.obj \
+		debug\usersnameslistmodel.obj \
 		debug\moc_client.obj \
-		debug\moc_logindialog.obj
+		debug\moc_logindialog.obj \
+		debug\moc_usersnameslistmodel.obj
 
 DIST          =  ..\Net_Lab1_Client\client.h \
-		..\Net_Lab1_Client\logindialog.h ..\Net_Lab1_Client\client.cpp \
+		..\Net_Lab1_Client\logindialog.h \
+		..\Net_Lab1_Client\usersnameslistmodel.h ..\Net_Lab1_Client\client.cpp \
 		..\Net_Lab1_Client\logindialog.cpp \
-		..\Net_Lab1_Client\main.cpp
+		..\Net_Lab1_Client\main.cpp \
+		..\Net_Lab1_Client\usersnameslistmodel.cpp
 QMAKE_TARGET  = Net_Lab1_Client
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = Net_Lab1_Client.exe
@@ -137,7 +143,7 @@ all: Makefile.Debug  debug\Net_Lab1_Client.exe
 
 debug\Net_Lab1_Client.exe: D:\Distrib\QT\5.13.0\msvc2017\lib\Qt5Widgetsd.lib D:\Distrib\QT\5.13.0\msvc2017\lib\Qt5Guid.lib D:\Distrib\QT\5.13.0\msvc2017\lib\Qt5Networkd.lib D:\Distrib\QT\5.13.0\msvc2017\lib\Qt5Cored.lib D:\Distrib\QT\5.13.0\msvc2017\lib\qtmaind.lib $(OBJECTS) 
 	$(LINKER) $(LFLAGS) /MANIFEST:embed /OUT:$(DESTDIR_TARGET) @<<
-debug\client.obj debug\logindialog.obj debug\main.obj debug\moc_client.obj debug\moc_logindialog.obj
+debug\client.obj debug\logindialog.obj debug\main.obj debug\usersnameslistmodel.obj debug\moc_client.obj debug\moc_logindialog.obj debug\moc_usersnameslistmodel.obj
 $(LIBS)
 <<
 
@@ -147,10 +153,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) Net_Lab1_Client.zip $(SOURCES) $(DIST) ..\Net_Lab1_Client\Net_Lab1_Client.pro ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\spec_pre.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\angle.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\windows-desktop.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\windows-vulkan.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\msvc-desktop.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\qconfig.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_bodymovin_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_charts.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_repparser.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_virtualkeyboard.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_virtualkeyboard_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webengine.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webview.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qt_functions.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qt_config.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\win32-msvc\qmake.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\exclusive_builds.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\msvc-version.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\toolchain.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\default_pre.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\win32\default_pre.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\resolve_config.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\default_post.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\build_pass.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qml_debug.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\precompile_header.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\warn_on.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qt.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\resources.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\moc.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\win32\opengl.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\uic.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qmake_use.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\file_copies.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\win32\windows.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\testcase_targets.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\exceptions.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\yacc.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\lex.prf ..\Net_Lab1_Client\Net_Lab1_Client.pro ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Widgetsd.prl ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Guid.prl ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Networkd.prl ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Cored.prl ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\qtmaind.prl    ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\data\dummy.cpp ..\Net_Lab1_Client\client.h ..\Net_Lab1_Client\logindialog.h  ..\Net_Lab1_Client\client.cpp ..\Net_Lab1_Client\logindialog.cpp ..\Net_Lab1_Client\main.cpp     
+	$(ZIP) Net_Lab1_Client.zip $(SOURCES) $(DIST) ..\Net_Lab1_Client\Net_Lab1_Client.pro ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\spec_pre.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\angle.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\windows-desktop.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\windows-vulkan.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\msvc-desktop.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\qconfig.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3danimation.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3danimation_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dextras.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dextras_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickanimation.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickanimation_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickextras.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickextras_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3dquickscene2d_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_accessibility_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_bodymovin_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_charts.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_charts_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_datavisualization.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_datavisualization_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_edid_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_egl_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_eventdispatcher_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_fontdatabase_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_gamepad.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_gamepad_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_location.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_networkauth.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_networkauth_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_platformcompositor_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_positioningquick.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_positioningquick_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_purchasing.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_purchasing_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_remoteobjects.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_remoteobjects_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_repparser.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_repparser_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_script.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_scxml.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_scxml_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_texttospeech.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_texttospeech_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_theme_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_virtualkeyboard.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_virtualkeyboard_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_vulkan_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webengine.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webengine_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webenginecore.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webenginecore_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webenginewidgets.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webenginewidgets_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webview.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_webview_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_windowsuiautomation_support_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qt_functions.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qt_config.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\win32-msvc\qmake.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\exclusive_builds.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\common\msvc-version.conf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\toolchain.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\default_pre.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\win32\default_pre.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\resolve_config.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\default_post.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\build_pass.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qml_debug.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\precompile_header.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\warn_on.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qt.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\resources.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\moc.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\win32\opengl.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\uic.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\qmake_use.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\file_copies.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\win32\windows.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\testcase_targets.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\exceptions.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\yacc.prf ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\lex.prf ..\Net_Lab1_Client\Net_Lab1_Client.pro ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Widgetsd.prl ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Guid.prl ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Networkd.prl ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\Qt5Cored.prl ..\..\..\..\Distrib\QT\5.13.0\msvc2017\lib\qtmaind.prl    ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\data\dummy.cpp ..\Net_Lab1_Client\client.h ..\Net_Lab1_Client\logindialog.h ..\Net_Lab1_Client\usersnameslistmodel.h  ..\Net_Lab1_Client\client.cpp ..\Net_Lab1_Client\logindialog.cpp ..\Net_Lab1_Client\main.cpp ..\Net_Lab1_Client\usersnameslistmodel.cpp     
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\client.obj debug\logindialog.obj debug\main.obj debug\moc_client.obj debug\moc_logindialog.obj
+	-$(DEL_FILE) debug\client.obj debug\logindialog.obj debug\main.obj debug\usersnameslistmodel.obj debug\moc_client.obj debug\moc_logindialog.obj debug\moc_usersnameslistmodel.obj
 	-$(DEL_FILE) debug\Net_Lab1_Client.vc.pdb debug\Net_Lab1_Client.ilk debug\Net_Lab1_Client.idb
 
 distclean: clean 
@@ -176,9 +182,9 @@ compiler_moc_predefs_clean:
 debug\moc_predefs.h: ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\data\dummy.cpp
 	cl -BxD:\Distrib\QT\5.13.0\msvc2017\bin\qmake.exe -nologo -Zc:wchar_t -FS -Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zi -MDd -W3 -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 -wd4577 -wd4467 -E ..\..\..\..\Distrib\QT\5.13.0\msvc2017\mkspecs\features\data\dummy.cpp 2>NUL >debug\moc_predefs.h
 
-compiler_moc_header_make_all: debug\moc_client.cpp debug\moc_logindialog.cpp
+compiler_moc_header_make_all: debug\moc_client.cpp debug\moc_logindialog.cpp debug\moc_usersnameslistmodel.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_client.cpp debug\moc_logindialog.cpp
+	-$(DEL_FILE) debug\moc_client.cpp debug\moc_logindialog.cpp debug\moc_usersnameslistmodel.cpp
 debug\moc_client.cpp: ..\Net_Lab1_Client\client.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QWidget \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qwidget.h \
@@ -308,6 +314,31 @@ debug\moc_client.cpp: ..\Net_Lab1_Client\client.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayout.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayoutitem.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QTime \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qdatetime.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QListWidget \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlistwidget.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlistview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractitemview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qitemselectionmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qstyleoption.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qvalidator.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qregularexpression.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qslider.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractslider.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qstyle.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtabbar.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtabwidget.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qrubberband.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QHBoxLayout \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QAbstractItemModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QStringListModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringlistmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\QAbstractSocket \
+		..\Net_Lab1_Client\usersnameslistmodel.h \
 		debug\moc_predefs.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\bin\moc.exe
 	D:\Distrib\QT\5.13.0\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include "D:/7 semester/NET/NetCourse/build-Net_Lab1_Client-Desktop_Qt_5_13_0_MSVC2017_32bit-Debug/debug/moc_predefs.h" -ID:/Distrib/QT/5.13.0/msvc2017/mkspecs/win32-msvc -I"D:/7 semester/NET/NetCourse/Net_Lab1_Client" -ID:/Distrib/QT/5.13.0/msvc2017/include -ID:/Distrib/QT/5.13.0/msvc2017/include/QtWidgets -ID:/Distrib/QT/5.13.0/msvc2017/include/QtGui -ID:/Distrib/QT/5.13.0/msvc2017/include/QtANGLE -ID:/Distrib/QT/5.13.0/msvc2017/include/QtNetwork -ID:/Distrib/QT/5.13.0/msvc2017/include/QtCore -I. -ID:\Distrib\VS2017\VC\Tools\MSVC\14.13.26128\ATLMFC\include -ID:\Distrib\VS2017\VC\Tools\MSVC\14.13.26128\include -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\Net_Lab1_Client\client.h -o debug\moc_client.cpp
@@ -427,9 +458,127 @@ debug\moc_logindialog.cpp: ..\Net_Lab1_Client\logindialog.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qdialog.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QDialogButtonBox \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qdialogbuttonbox.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QPushButton \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qpushbutton.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractbutton.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qicon.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QVBoxLayout \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qboxlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayoutitem.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QLabel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlabel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\QIntValidator \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qvalidator.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qregularexpression.h \
+		..\Net_Lab1_Client\client.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\QTcpSocket \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\qtcpsocket.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\qtnetworkglobal.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\qtnetwork-config.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\qabstractsocket.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QTextEdit \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextdocument.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QTime \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qdatetime.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QListWidget \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlistwidget.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlistview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractitemview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qitemselectionmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qstyleoption.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qslider.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractslider.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qstyle.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtabbar.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtabwidget.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qrubberband.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QHBoxLayout \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QAbstractItemModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QStringListModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringlistmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\QAbstractSocket \
+		..\Net_Lab1_Client\usersnameslistmodel.h \
 		debug\moc_predefs.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\bin\moc.exe
 	D:\Distrib\QT\5.13.0\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include "D:/7 semester/NET/NetCourse/build-Net_Lab1_Client-Desktop_Qt_5_13_0_MSVC2017_32bit-Debug/debug/moc_predefs.h" -ID:/Distrib/QT/5.13.0/msvc2017/mkspecs/win32-msvc -I"D:/7 semester/NET/NetCourse/Net_Lab1_Client" -ID:/Distrib/QT/5.13.0/msvc2017/include -ID:/Distrib/QT/5.13.0/msvc2017/include/QtWidgets -ID:/Distrib/QT/5.13.0/msvc2017/include/QtGui -ID:/Distrib/QT/5.13.0/msvc2017/include/QtANGLE -ID:/Distrib/QT/5.13.0/msvc2017/include/QtNetwork -ID:/Distrib/QT/5.13.0/msvc2017/include/QtCore -I. -ID:\Distrib\VS2017\VC\Tools\MSVC\14.13.26128\ATLMFC\include -ID:\Distrib\VS2017\VC\Tools\MSVC\14.13.26128\include -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\Net_Lab1_Client\logindialog.h -o debug\moc_logindialog.cpp
+
+debug\moc_usersnameslistmodel.cpp: ..\Net_Lab1_Client\usersnameslistmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QStringListModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringlistmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qvariant.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qatomic.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qglobal.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qconfig.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qtcore-config.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qsystemdetection.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qprocessordetection.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qtypeinfo.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qsysinfo.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qlogging.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qflags.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qglobalstatic.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qmutex.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qnumeric.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qversiontagging.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qbasicatomic.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qgenericatomic.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qbytearray.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qrefcount.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qnamespace.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qarraydata.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qlist.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qalgorithms.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qiterator.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qhashfunctions.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstring.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qchar.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringliteral.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringalgorithms.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringbuilder.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qpair.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qvector.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qpoint.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qbytearraylist.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringlist.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qregexp.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringmatcher.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qmetatype.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qobjectdefs.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qmap.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qdebug.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qhash.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qtextstream.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qiodevice.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qobject.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qcoreevent.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qscopedpointer.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qobject_impl.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qlocale.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qshareddata.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qset.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qcontiguouscache.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qsharedpointer.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qsharedpointer_impl.h \
+		debug\moc_predefs.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\bin\moc.exe
+	D:\Distrib\QT\5.13.0\msvc2017\bin\moc.exe $(DEFINES) --compiler-flavor=msvc --include "D:/7 semester/NET/NetCourse/build-Net_Lab1_Client-Desktop_Qt_5_13_0_MSVC2017_32bit-Debug/debug/moc_predefs.h" -ID:/Distrib/QT/5.13.0/msvc2017/mkspecs/win32-msvc -I"D:/7 semester/NET/NetCourse/Net_Lab1_Client" -ID:/Distrib/QT/5.13.0/msvc2017/include -ID:/Distrib/QT/5.13.0/msvc2017/include/QtWidgets -ID:/Distrib/QT/5.13.0/msvc2017/include/QtGui -ID:/Distrib/QT/5.13.0/msvc2017/include/QtANGLE -ID:/Distrib/QT/5.13.0/msvc2017/include/QtNetwork -ID:/Distrib/QT/5.13.0/msvc2017/include/QtCore -I. -ID:\Distrib\VS2017\VC\Tools\MSVC\14.13.26128\ATLMFC\include -ID:\Distrib\VS2017\VC\Tools\MSVC\14.13.26128\include -I"C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\include\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\ucrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\shared" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\um" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\winrt" -I"C:\Program Files (x86)\Windows Kits\10\include\10.0.16299.0\cppwinrt" ..\Net_Lab1_Client\usersnameslistmodel.h -o debug\moc_usersnameslistmodel.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -577,7 +726,32 @@ debug\client.obj: ..\Net_Lab1_Client\client.cpp ..\Net_Lab1_Client\client.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qboxlayout.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayout.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayoutitem.h \
-		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qgridlayout.h
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QTime \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qdatetime.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QListWidget \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlistwidget.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlistview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractitemview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qitemselectionmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qstyleoption.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qvalidator.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qregularexpression.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qslider.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractslider.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qstyle.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtabbar.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtabwidget.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qrubberband.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QHBoxLayout \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QAbstractItemModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QStringListModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringlistmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\QAbstractSocket \
+		..\Net_Lab1_Client\usersnameslistmodel.h
 
 debug\logindialog.obj: ..\Net_Lab1_Client\logindialog.cpp ..\Net_Lab1_Client\logindialog.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QWidget \
@@ -693,7 +867,54 @@ debug\logindialog.obj: ..\Net_Lab1_Client\logindialog.cpp ..\Net_Lab1_Client\log
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QDialog \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qdialog.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QDialogButtonBox \
-		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qdialogbuttonbox.h
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qdialogbuttonbox.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QPushButton \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qpushbutton.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractbutton.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qicon.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QVBoxLayout \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qboxlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayoutitem.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QLabel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlabel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\QIntValidator \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qvalidator.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qregularexpression.h \
+		..\Net_Lab1_Client\client.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\QTcpSocket \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\qtcpsocket.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\qtnetworkglobal.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\qtnetwork-config.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\qabstractsocket.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QTextEdit \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtextedit.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractscrollarea.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qtextdocument.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QTime \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qdatetime.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QListWidget \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlistwidget.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlistview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractitemview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qitemselectionmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qstyleoption.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qslider.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractslider.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qstyle.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtabbar.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtabwidget.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qrubberband.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QHBoxLayout \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QAbstractItemModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QStringListModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringlistmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\QAbstractSocket \
+		..\Net_Lab1_Client\usersnameslistmodel.h
 
 debug\main.obj: ..\Net_Lab1_Client\main.cpp ..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QApplication \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qapplication.h \
@@ -830,11 +1051,114 @@ debug\main.obj: ..\Net_Lab1_Client\main.cpp ..\..\..\..\Distrib\QT\5.13.0\msvc20
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qboxlayout.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayout.h \
 		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlayoutitem.h \
-		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qgridlayout.h
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qgridlayout.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QTime \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qdatetime.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QListWidget \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlistwidget.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlistview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractitemview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qitemselectionmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractitemdelegate.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qstyleoption.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractspinbox.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\qvalidator.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qregularexpression.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qslider.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qabstractslider.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qstyle.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtabbar.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qtabwidget.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qrubberband.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QHBoxLayout \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QAbstractItemModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QStringListModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringlistmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtNetwork\QAbstractSocket \
+		..\Net_Lab1_Client\usersnameslistmodel.h \
+		..\Net_Lab1_Client\logindialog.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QDialog \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qdialog.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QDialogButtonBox \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qdialogbuttonbox.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\QLabel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtWidgets\qlabel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtGui\QIntValidator
+
+debug\usersnameslistmodel.obj: ..\Net_Lab1_Client\usersnameslistmodel.cpp ..\Net_Lab1_Client\usersnameslistmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\QStringListModel \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringlistmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qabstractitemmodel.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qvariant.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qatomic.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qglobal.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qconfig-bootstrapped.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qconfig.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qtcore-config.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qsystemdetection.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qprocessordetection.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qcompilerdetection.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qtypeinfo.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qsysinfo.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qlogging.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qflags.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qglobalstatic.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qmutex.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qnumeric.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qversiontagging.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qbasicatomic.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qatomic_bootstrap.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qgenericatomic.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qatomic_cxx11.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qatomic_msvc.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qbytearray.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qrefcount.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qnamespace.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qarraydata.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qlist.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qalgorithms.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qiterator.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qhashfunctions.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstring.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qchar.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringliteral.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringalgorithms.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringview.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringbuilder.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qpair.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qvector.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qpoint.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qbytearraylist.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringlist.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qregexp.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qstringmatcher.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qmetatype.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qvarlengtharray.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qcontainerfwd.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qobjectdefs.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qobjectdefs_impl.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qmap.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qdebug.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qhash.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qtextstream.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qiodevice.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qobject.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qcoreevent.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qscopedpointer.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qobject_impl.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qlocale.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qshareddata.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qset.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qcontiguouscache.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qsharedpointer.h \
+		..\..\..\..\Distrib\QT\5.13.0\msvc2017\include\QtCore\qsharedpointer_impl.h
 
 debug\moc_client.obj: debug\moc_client.cpp 
 
 debug\moc_logindialog.obj: debug\moc_logindialog.cpp 
+
+debug\moc_usersnameslistmodel.obj: debug\moc_usersnameslistmodel.cpp 
 
 ####### Install
 

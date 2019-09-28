@@ -21,16 +21,18 @@ Client::Client(QWidget* pwgt)
             this, &Client::sendMsgToServer);//по нажатию на кнопку отправляем сообщение на сервер
     //usersNamesList = new QListWidget();
 
-    model = new QStringListModel(usersNamesList, this);
+    //model = new QStringListModel(usersNamesList, this);
+    /*model = new UsersNamesListModel(this);
     usersNamesListView = new QListView(this);
-    usersNamesListView->setModel(model);
+    usersNamesListView->setModel(model);*/
 
+    usersNamesListWidget = new QListWidget(this);
     //Layout
     QHBoxLayout* hBoxLayout = new QHBoxLayout;
-    hBoxLayout->addWidget(dialog);
-    hBoxLayout->addWidget(usersNamesListView);
+    hBoxLayout->addWidget(dialog, 2);
+    //hBoxLayout->addWidget(usersNamesListView);
+    hBoxLayout->addWidget(usersNamesListWidget, 1);
     QVBoxLayout* vBoxLayout = new QVBoxLayout;
-    //vBoxLayout->addWidget(dialog);
     vBoxLayout->addLayout(hBoxLayout);
     vBoxLayout->addWidget(msgField);
     vBoxLayout->addWidget(sendBtn);
@@ -122,8 +124,25 @@ void Client::readFromServer()
             if ((index = usersNamesList.indexOf(newUserName)) == -1) { //если такого в списке нет
                 usersNamesList << newUserName;
                 newUserConnected = true;
+                /*
+                int rowCount = model->rowCount();
+                //model->insertRows(rowCount, 1);
+                rowCount = model->rowCount();
+                //model->setData(createIndex(rowCount, 0), newUserName);
+                model->setData(model->index(model->rowCount()), newUserName);
+                rowCount = model->rowCount();
+                //model->setData(model->index(model->rowCount()), newUserName);
+                */
+                QListWidgetItem *item = new QListWidgetItem(newUserName, usersNamesListWidget);
+                //usersNamesList.push_back(newUserName);
                 //usersNamesListView->setModel(model);
             } else {
+                /*QList<QListWidgetItem *> items = usersNamesListWidget->findItems(newUserName, Qt::MatchExactly);
+                for (int j = 0; j < items.size(); ++j) {
+                    usersNamesListWidget->removeItemWidget(items.at(j));
+                }*/
+                //model->removeRows(index, 1);
+                usersNamesListWidget->takeItem(index);
                 usersNamesList.removeAt(index);
             }
         } else if (cntrlByte == 1) { //если получено сообщение
@@ -134,6 +153,9 @@ void Client::readFromServer()
             for (int i = 0; i < numberOfCLients; ++i) {
                 QString userName;
                 in >> userName;
+                QListWidgetItem *item = new QListWidgetItem(userName, usersNamesListWidget);
+                //model->insertRows(model->rowCount(), 1);
+                //model->setData(model->index(model->rowCount()), userName);
                 usersNamesList.push_back(userName);
             }
         } else if (cntrlByte == 3) { //Если получено сообщение о бане
@@ -161,4 +183,5 @@ void Client::readFromServer()
     } /*else if (cntrlByte == 3) {
         dialog->setText(banMsg);//просто печатаем сообщение бана
     }*/
+    dialog->append("");
 }

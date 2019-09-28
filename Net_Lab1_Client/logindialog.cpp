@@ -8,9 +8,11 @@ LoginDialog::LoginDialog(Client *_client, QWidget *parent)
     QLabel *nameLbl = new QLabel("&Имя:", this);
     nameLbl->setBuddy(nameFld);
     ipFld = new QLineEdit(this);
+    ipFld->setText("localhost");
     QLabel *ipLbl = new QLabel("&ip:", this);
     ipLbl->setBuddy(ipFld);
     portFld = new QLineEdit(this);
+    portFld->setText("2424");
     //допускаем ввод только чисел в диапазоне
     //portFld->setValidator( new QIntValidator(1024, 40000, this) );
     QLabel *portLbl = new QLabel("&Порт:", this);
@@ -39,6 +41,7 @@ LoginDialog::LoginDialog(Client *_client, QWidget *parent)
     vBoxLayout->addWidget(buttonBox);
     //vBoxLayout->addWidget(okButton);
     setLayout(vBoxLayout);
+    setFixedSize(500, 300); //устанавливаем фиксированный размер окна
 
 }
 
@@ -63,12 +66,19 @@ void LoginDialog::acceptButtonClicked()
     connect(client, &Client::connectionFailed,
             [this] () {
         this->errorLbl->setText("Не удалось установить соединение");
+        this->nameFld->setReadOnly(false);
+        this->ipFld->setReadOnly(false);
+        this->portFld->setReadOnly(false);
     });
     connect(client, &Client::connectionSucceeded,
             [this] () {
        emit accept();
     });
     client->connectToServer(ip, port, name, errorMsg);
+    errorLbl->setText("Ожидание подключения...");
+    nameFld->setReadOnly(true);
+    ipFld->setReadOnly(true);
+    portFld->setReadOnly(true);
     /*if (!client->connectToServer(ip, port, name, errorMsg)) {
         errorLbl->setText(errorMsg);
         return;

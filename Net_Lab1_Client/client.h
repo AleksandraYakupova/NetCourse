@@ -13,6 +13,7 @@
 #include <QAbstractItemModel>
 #include <QStringListModel>
 #include <QAbstractSocket>
+#include <usersnameslistmodel.h>
 //class QLineEdit;
 
 class Client : public QWidget
@@ -32,11 +33,12 @@ private:
     quint16 nextBlockSize;
     //QListWidget *usersNamesList;
     QListView *usersNamesListView;
-    QStringListModel *model;
+    UsersNamesListModel *model;
     QString name;//имя клиента
     QStringList usersNamesList;//имена всех участников чата
     QString errorMsg;
     bool isConnectedSuccessfully;
+    QListWidget *usersNamesListWidget;
 public slots:
     void sendMsgToServer();//отправляет сообщение серверу
     //void sendNameToServer();//отправляет серверу имя

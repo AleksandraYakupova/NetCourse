@@ -28,11 +28,13 @@ CONFIG += c++11
 SOURCES += \
         client.cpp \
         logindialog.cpp \
-        main.cpp
+        main.cpp \
+        usersnameslistmodel.cpp
 
 HEADERS += \
         client.h \
-        logindialog.h
+        logindialog.h \
+        usersnameslistmodel.h
 
 FORMS +=
 
