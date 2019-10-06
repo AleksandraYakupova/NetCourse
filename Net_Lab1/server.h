@@ -1,5 +1,6 @@
 #ifndef SERVER_H
 #define SERVER_H
+#include <windows.h>
 #include <QTcpServer>
 #include <QWidget>
 #include <QTextEdit>
