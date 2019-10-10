@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>60</y>
+      <y>90</y>
       <width>141</width>
       <height>22</height>
      </rect>
@@ -39,8 +39,11 @@
     <property name="text">
      <string>Адрес получателя:</string>
     </property>
+    <property name="buddy">
+     <cstring>lEditSndAddr</cstring>
+    </property>
    </widget>
-   <widget class="QLineEdit" name="lEditSenderAddress">
+   <widget class="QLineEdit" name="lEditRcvPort">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -50,11 +53,11 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushBtnGeneratePckg">
+   <widget class="QPushButton" name="btnGeneratePckg">
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>100</y>
+      <y>180</y>
       <width>101</width>
       <height>28</height>
      </rect>
@@ -74,6 +77,100 @@
     </property>
     <property name="text">
      <string>Адрес отправителя:</string>
+    </property>
+    <property name="buddy">
+     <cstring>lEditRcvAddress</cstring>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblSenderPort">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>141</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Порт отправителя:</string>
+    </property>
+    <property name="buddy">
+     <cstring>lEditRcvPort</cstring>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lEditSndAddr">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>90</y>
+      <width>151</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblReceiverPort">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>120</y>
+      <width>141</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Порт получателя:</string>
+    </property>
+    <property name="buddy">
+     <cstring>lEditSndPort</cstring>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lEditSndPort">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>120</y>
+      <width>151</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblErrorMsg">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>150</y>
+      <width>481</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>A</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblData">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>20</y>
+      <width>55</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Данные:</string>
+    </property>
+    <property name="buddy">
+     <cstring>tEditData</cstring>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="tEditData">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>40</y>
+      <width>271</width>
+      <height>101</height>
+     </rect>
     </property>
    </widget>
   </widget>

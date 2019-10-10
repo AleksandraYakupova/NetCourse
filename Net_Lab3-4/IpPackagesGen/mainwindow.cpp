@@ -8,49 +8,45 @@
 #include <QValidator>
 #include <QLineEdit>
 
-struct IPHeader
-{
-    unsigned short ver_number : 4;
-    unsigned short header_lenght : 4;
-    unsigned short service_type : 8;
-    unsigned short total_lenght : 16;
-    unsigned short id : 16;
-    unsigned short flags : 3;
-    unsigned short fragment_offset : 13;
-    unsigned short life_time : 8;
-    unsigned short protocol : 8;
-    unsigned short checksum : 16;
-    unsigned int source_ip_addr : 32;
-    unsigned int dest_ip_addr : 32;
-    unsigned int options : 32;
-
-};
-
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent)
-    //ui(new Ui::MainWindow)
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
     //Layout
-    QLineEdit *lEditSourceIPAddr = new QLineEdit();
-    QLineEdit *lEditDestIPAddr = new QLineEdit();
-    QRegExp rx("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\."
-               "\\1\\.\\1.\\1$");
-    QValidator *validator = new QRegExpValidator(rx, this);
-    lEditSourceIPAddr->setValidator(validator);
-    lEditDestIPAddr->setValidator(validator);
-    QPushButton *readyBtn = new QPushButton();
+    //Текстовые поля для ввода ip адресов
+    /*lEditSourceIPAddr = new QLineEdit(this);
+    lEditDestIPAddr = new QLineEdit(this);
+    QPushButton *readyBtn = new QPushButton("Сгенерировать пакет");
     connect(readyBtn, &QPushButton::clicked, this, &MainWindow::generatePackage);
+    errorLbl = new QLabel(this);
     QWidget *widget = new QWidget(this);
     setCentralWidget(widget);
-    QVBoxLayout *layout = new QVBoxLayout();
+    QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(lEditSourceIPAddr);
+    layout->addWidget(errorLbl);
     layout->addWidget(readyBtn);
-    widget->setLayout(layout);
+    widget->setLayout(layout);*/
 
-    //ui->setupUi(this);
+    ui->setupUi(this);
+    lEditSndAddr = ui->lEditSndAddr;
+    lEditRcvAddress = ui->lEditRcvAddress;
+    lblErrorMsg = ui->lblErrorMsg;
+    QPushButton *btnGeneratePckg = ui->btnGeneratePckg;
+
+    QRegExp rx("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
+               "\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
+               "\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)"
+               "\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
+    QValidator *validator = new QRegExpValidator(rx, this);
+    lEditSndAddr->setValidator(validator);
+    lEditRcvAddress->setValidator(validator);
+    //ui->lEditRcvPort->setValidator(portV);
+    //ui->lEditSndPort->setValidator(portV);
+    connect(btnGeneratePckg, &QPushButton::clicked, this, &MainWindow::generatePackage);
+
     IPHeader ipHeader;
     ipHeader.ver_number = 4;
-    ipHeader.header_lenght = 5;
+    ipHeader.header_lenght = 5;//(количество слов в заголовке)
     ipHeader.service_type = 0;
     ipHeader.id = 0;
     ipHeader.flags = 2; //010
@@ -61,22 +57,80 @@ MainWindow::MainWindow(QWidget *parent) :
     //ipHeader.source_ip_addr
     //ipHeader.dest_ip_addr
     //ipHeader.checksum = ...
+    //ipHeader.total_length =
 
 }
 
 void MainWindow::generatePackage()
 {
+    unsigned int sourceAddr, destAddr;
+    if (!getIPAddresses(sourceAddr, destAddr))//получаем ip адреса отправителя и получателя
+        return;                                 //в виде, необходимом для записи в пакет
 
+    //Получаем введенные данные
+    QByteArray data = ui->tEditData->toPlainText().toUtf8();
+    //Получаем порты
+    unsigned short sourcePort, destPort;
+    if (!getPorts(sourcePort, destPort))
+        return;
+
+    //Генерируем UDP пакет
 
 }
 
-unsigned int MainWindow::parseIPAddresses()
+bool MainWindow::getIPAddresses(unsigned int& sourceAddr, unsigned int& destAddr)
 {
-    QString sourceIPStr = lEditSourceIPAddr->text();
-
+    if (!lEditSndAddr->hasAcceptableInput()) {
+        lblErrorMsg->setText("Не корректно задан ip адрес отправителя!");
+        return false;
+    }
+    if (!lEditRcvAddress->hasAcceptableInput()) {
+        lblErrorMsg->setText("Не корректно задан ip адрес получателя!");
+        return false;
+    }
+    QString sourceIPStr = lEditSndAddr->text();
+    QString destIPStr = lEditRcvAddress->text();
+    sourceAddr = parseIPAddress(sourceIPStr);
+    destAddr = parseIPAddress(destIPStr);
+    return true;
 }
+
+bool MainWindow::getPorts(unsigned short& sourcePort, unsigned short& destPort)
+{
+    QIntValidator *portV = new QIntValidator(1024, 40000, this);
+    QString sndPortStr = ui->lEditSndPort->text();
+    QString rcvPortStr = ui->lEditRcvPort->text();
+    int pos;
+    if (portV->validate(sndPortStr, pos) != QIntValidator::Acceptable) {
+        lblErrorMsg->setText("Не корректно задан порт отправителя!");
+        return false;
+    }
+    if (portV->validate(rcvPortStr, pos) != QIntValidator::Acceptable) {
+        lblErrorMsg->setText("Не корректно задан порт получателя!");
+        return false;
+    }
+    sourcePort = sndPortStr.toUShort();
+    destPort = rcvPortStr.toUShort();
+    return true;
+}
+
+unsigned int MainWindow::parseIPAddress(QString ipAddrStr)
+{
+   unsigned int ipAddr = 0;
+   QStringList addrParts = ipAddrStr.split('.');
+   int offset = 24;
+   for(auto partStr : addrParts)
+   {
+       unsigned int part = partStr.toUInt();
+       part <<= offset;
+       ipAddr += part;
+       offset -= 8;
+   }
+   return ipAddr;
+}
+
 
 MainWindow::~MainWindow()
 {
-    //delete ui;
+    delete ui;
 }
