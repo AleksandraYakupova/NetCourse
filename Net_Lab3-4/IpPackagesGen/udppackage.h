@@ -17,12 +17,14 @@ class UDPPackage : public QObject
 
 public:
     UDPPackage();
-    void fillPackage(unsigned short, unsigned short, QByteArray,
+    void fill(unsigned short, unsigned short, QByteArray,
                      unsigned int, unsigned int);
     QByteArray createPseudoHeader(unsigned int, unsigned int, unsigned short);
+    unsigned short calculateCheckSum();
 private:
     UDPHeader header;
     QByteArray data;
+    QByteArray pseudoHeader;
 };
 
 #endif // UDPPACKAGE_H

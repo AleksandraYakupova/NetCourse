@@ -7,6 +7,7 @@
 #include <QRegExp>
 #include <QValidator>
 #include <QLineEdit>
+#include "udppackage.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
     lEditSndAddr = ui->lEditSndAddr;
-    lEditRcvAddress = ui->lEditRcvAddress;
+    lEditRcvAddress = ui->lEditRcvAddr;
     lblErrorMsg = ui->lblErrorMsg;
     QPushButton *btnGeneratePckg = ui->btnGeneratePckg;
 
@@ -40,6 +41,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QValidator *validator = new QRegExpValidator(rx, this);
     lEditSndAddr->setValidator(validator);
     lEditRcvAddress->setValidator(validator);
+    lEditSndAddr->setText("8.8.8.8");
+    lEditRcvAddress->setText("1.1.1.1");
+    ui->lEditRcvPort->setText("10000");
+    ui->lEditSndPort->setText("10000");
     //ui->lEditRcvPort->setValidator(portV);
     //ui->lEditSndPort->setValidator(portV);
     connect(btnGeneratePckg, &QPushButton::clicked, this, &MainWindow::generatePackage);
@@ -75,7 +80,8 @@ void MainWindow::generatePackage()
         return;
 
     //Генерируем UDP пакет
-
+    UDPPackage udpPckg;
+    udpPckg.fill(sourcePort, destPort, data, sourceAddr, destAddr);
 }
 
 bool MainWindow::getIPAddresses(unsigned int& sourceAddr, unsigned int& destAddr)

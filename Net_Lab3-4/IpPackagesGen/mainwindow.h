@@ -39,11 +39,13 @@ struct TCPHeader
 
 };
 
+/*
 struct IPPackage
 {
     IPHeader header;
     UDPPackage data;
 };
+*/
 
 namespace Ui {
 class MainWindow;
@@ -62,7 +64,6 @@ public slots:
     bool getIPAddresses(unsigned int&, unsigned int&);
     bool getPorts(unsigned short&, unsigned short&);
     unsigned int parseIPAddress(QString);
-    UDPPackage generateUDPPackage(unsigned short, unsigned short, QByteArray);
 
 private:
     QLineEdit *lEditSndAddr;

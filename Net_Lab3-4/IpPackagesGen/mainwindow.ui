@@ -17,7 +17,7 @@
    <string>IP Package Generator</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLineEdit" name="lEditRcvAddress">
+   <widget class="QLineEdit" name="lEditSndAddr">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -40,7 +40,7 @@
      <string>Адрес получателя:</string>
     </property>
     <property name="buddy">
-     <cstring>lEditSndAddr</cstring>
+     <cstring>lEditRcvAddr</cstring>
     </property>
    </widget>
    <widget class="QLineEdit" name="lEditRcvPort">
@@ -79,7 +79,7 @@
      <string>Адрес отправителя:</string>
     </property>
     <property name="buddy">
-     <cstring>lEditRcvAddress</cstring>
+     <cstring>lEditSndAddr</cstring>
     </property>
    </widget>
    <widget class="QLabel" name="lblSenderPort">
@@ -98,7 +98,7 @@
      <cstring>lEditRcvPort</cstring>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lEditSndAddr">
+   <widget class="QLineEdit" name="lEditRcvAddr">
     <property name="geometry">
      <rect>
       <x>160</x>
