@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>694</width>
-    <height>468</height>
+    <width>651</width>
+    <height>676</height>
    </rect>
   </property>
   <property name="contextMenuPolicy">
@@ -173,13 +173,23 @@
      </rect>
     </property>
    </widget>
+   <widget class="QTextEdit" name="tEditPckgInfo">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>220</y>
+      <width>511</width>
+      <height>391</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>694</width>
+     <width>651</width>
      <height>26</height>
     </rect>
    </property>

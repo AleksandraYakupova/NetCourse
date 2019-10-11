@@ -80,8 +80,9 @@ void MainWindow::generatePackage()
         return;
 
     //Генерируем UDP пакет
-    UDPPackage udpPckg;
     udpPckg.fill(sourcePort, destPort, data, sourceAddr, destAddr);
+
+    printPackageInfo();//Выводим
 }
 
 bool MainWindow::getIPAddresses(unsigned int& sourceAddr, unsigned int& destAddr)
@@ -135,6 +136,20 @@ unsigned int MainWindow::parseIPAddress(QString ipAddrStr)
    return ipAddr;
 }
 
+void MainWindow::printPackageInfo()
+{
+    QTextEdit *tEditPckgInfo = ui->tEditPckgInfo;
+    QString text = QString("<p><b>User Datagram Protocol</b></p>"
+                           "<p>Source Port: <span style=\"color:red; font-family:Georgia, serif\">%1</span></p>"
+                           "<p>Destination Port: %2</p>"
+                           "<p>Length: %3 bytes</p>"
+                           "<p>Checksum: 0x%4 </p>")
+            .arg(udpPckg.header.source_port)
+            .arg(udpPckg.header.dest_port)
+            .arg(udpPckg.header.length)
+            .arg(udpPckg.header.checksum, 0, 16);
+    tEditPckgInfo->setHtml(text);
+}
 
 MainWindow::~MainWindow()
 {

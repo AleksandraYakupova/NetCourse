@@ -56,17 +56,21 @@ unsigned short UDPPackage::calculateCheckSum()
     word1 = words[0];
     word1 <<= 8;
     word1 += words[1];
-    for (int i = 2; i < words.size(); i+=2)
+    for (int i = 1; i < words.size(); i+=2)
     {
         word2 = words[i];
         word2 <<= 8;
         word2 += words[i+1];
 
-        word2 += word1;//cкладываем два 16битных слова
-        if (word2 >= 0xffff) {
-
+        unsigned int wordSum = word2 + word1;//cкладываем два 16битных слова
+        if (wordSum >= 0xffff) {
+            ++wordSum;
         }
-        word1 = word2;
+        word1 = wordSum;//у wordSum "подрезаются" верхние биты
+        //0001 0011 0001 1000 1101 - 1318D
+        //0000 0011 0001 1000 1101 - 318D
     }
+    word1 = ~word1;//инвертируем
+    checkSum = word1;
     return checkSum;
 }

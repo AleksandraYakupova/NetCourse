@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QLineEdit>
 #include <QLabel>
+#include "udppackage.h"
 
 struct IPHeader
 {
@@ -61,17 +62,19 @@ public:
 
 public slots:
     void generatePackage();
+
+private:
     bool getIPAddresses(unsigned int&, unsigned int&);
     bool getPorts(unsigned short&, unsigned short&);
     unsigned int parseIPAddress(QString);
-
-private:
+    void printPackageInfo();
     QLineEdit *lEditSndAddr;
     QLineEdit *lEditRcvAddress;
     QLineEdit *lEditSndPort;
     QLineEdit *lEditRcvPort;
     QLabel *lblErrorMsg;
     Ui::MainWindow *ui;
+    UDPPackage udpPckg;
 };
 
 #endif // MAINWINDOW_H
