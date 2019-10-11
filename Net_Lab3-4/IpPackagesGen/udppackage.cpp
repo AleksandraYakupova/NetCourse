@@ -74,3 +74,16 @@ unsigned short UDPPackage::calculateCheckSum()
     checkSum = word1;
     return checkSum;
 }
+
+UDPPackage& UDPPackage::operator=( const UDPPackage& other)
+{
+    header = other.header;
+    data = other.data;
+    return *this;
+}
+
+UDPPackage::UDPPackage(const UDPPackage &other)
+{
+    header = other.header;
+    data = other.data;
+}

@@ -25,11 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        ippackage.cpp \
         main.cpp \
         mainwindow.cpp \
         udppackage.cpp
 
 HEADERS += \
+        ippackage.h \
         mainwindow.h \
         udppackage.h
 

@@ -49,21 +49,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //ui->lEditSndPort->setValidator(portV);
     connect(btnGeneratePckg, &QPushButton::clicked, this, &MainWindow::generatePackage);
 
-    IPHeader ipHeader;
-    ipHeader.ver_number = 4;
-    ipHeader.header_lenght = 5;//(количество слов в заголовке)
-    ipHeader.service_type = 0;
-    ipHeader.id = 0;
-    ipHeader.flags = 2; //010
-    ipHeader.fragment_offset = 0;//пакет не фрагментируется, поэтому смещения нет
-    ipHeader.life_time = 128;//пакет может пройти 20 узлов
-    ipHeader.protocol = 17;//код для UDP пакетов
-    QString ip_addr = "168.212.24.120";
-    //ipHeader.source_ip_addr
-    //ipHeader.dest_ip_addr
-    //ipHeader.checksum = ...
-    //ipHeader.total_length =
-
 }
 
 void MainWindow::generatePackage()
@@ -81,7 +66,10 @@ void MainWindow::generatePackage()
 
     //Генерируем UDP пакет
     udpPckg.fill(sourcePort, destPort, data, sourceAddr, destAddr);
+    //Генерируем ip пакет
+    ipPckg.fill(sourceAddr, destAddr, udpPckg);
 
+    ui->lblErrorMsg->setText("");
     printPackageInfo();//Выводим
 }
 
@@ -139,16 +127,52 @@ unsigned int MainWindow::parseIPAddress(QString ipAddrStr)
 void MainWindow::printPackageInfo()
 {
     QTextEdit *tEditPckgInfo = ui->tEditPckgInfo;
-    QString text = QString("<p><b>User Datagram Protocol</b></p>"
-                           "<p>Source Port: <span style=\"color:red; font-family:Georgia, serif\">%1</span></p>"
+    QString ipPckgInfo = QString("<p><b>Internet Protocol Version 4</b></p>"
+                                 "<p>Version: %1</p>"
+                                 "<p>Header Length: %2 bytes (%3)</p>"
+                                 "<p>Service type: 0x%4 </p>"
+                                 "<p>Total Length: %5 bytes </p>"
+                                 "<p>Identification: 0x%6 </p>"
+                                 "<p>Flags: %7 </p>"
+                                 "<p>Fragment Offset: %8 </p>"
+                                 "<p>Time to live: %9 </p>"
+                                 "<p>Protocol: UDP (%10) </p>"
+                                 "<p>Check Sum: 0x%11 </p>"
+                                 "<p>Source: %12 </p>"
+                                 "<p>Destination: %13 </p>")
+                  .arg(ipPckg.header.ver_number)
+                  .arg(ipPckg.header.header_lenght * 4)
+                  .arg(ipPckg.header.header_lenght)
+                  .arg(ipPckg.header.service_type, 2, 16, QChar('0'))
+                  .arg(ipPckg.header.total_length)
+            .arg(ipPckg.header.id, 0, 16)
+            .arg(ipPckg.header.flags, 3, 2, QChar('0'))
+            .arg(ipPckg.header.fragment_offset)
+            .arg(ipPckg.header.life_time)
+            .arg(ipPckg.header.protocol)
+            .arg(ipPckg.header.checksum, 0, 16)
+            .arg(lEditSndAddr->text())
+            .arg(lEditRcvAddress->text());
+
+
+    QString udpPckgInfo = QString("<p><b>User Datagram Protocol</b></p>"
+                           "<p>Source Port: %1</p>"
                            "<p>Destination Port: %2</p>"
                            "<p>Length: %3 bytes</p>"
-                           "<p>Checksum: 0x%4 </p>")
+                           "<p>Checksum: 0x%4 </p>"
+                           "<p>Data: %5 </p>")
             .arg(udpPckg.header.source_port)
             .arg(udpPckg.header.dest_port)
             .arg(udpPckg.header.length)
-            .arg(udpPckg.header.checksum, 0, 16);
-    tEditPckgInfo->setHtml(text);
+            .arg(udpPckg.header.checksum, 0, 16)
+            .arg(QString(udpPckg.data));
+
+    ipPckgInfo += udpPckgInfo;
+    tEditPckgInfo->setHtml(ipPckgInfo);
+    QTextCursor cursor = tEditPckgInfo->textCursor();
+    tEditPckgInfo->selectAll();
+    tEditPckgInfo->setFontPointSize(12);
+    tEditPckgInfo->setTextCursor( cursor );
 }
 
 MainWindow::~MainWindow()

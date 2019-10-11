@@ -5,24 +5,7 @@
 #include <QLineEdit>
 #include <QLabel>
 #include "udppackage.h"
-
-struct IPHeader
-{
-    unsigned short ver_number : 4;
-    unsigned short header_lenght : 4;
-    unsigned short service_type : 8;
-    unsigned short total_lenght : 16;
-    unsigned short id : 16;
-    unsigned short flags : 3;
-    unsigned short fragment_offset : 13;
-    unsigned short life_time : 8;
-    unsigned short protocol : 8;
-    unsigned short checksum : 16;
-    unsigned int source_ip_addr : 32;
-    unsigned int dest_ip_addr : 32;
-    unsigned int options : 32;
-
-};
+#include "ippackage.h"
 
 struct TCPHeader
 {
@@ -75,6 +58,7 @@ private:
     QLabel *lblErrorMsg;
     Ui::MainWindow *ui;
     UDPPackage udpPckg;
+    IPPackage ipPckg;
 };
 
 #endif // MAINWINDOW_H

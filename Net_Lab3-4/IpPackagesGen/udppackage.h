@@ -23,6 +23,8 @@ public:
                      unsigned int, unsigned int);
     QByteArray createPseudoHeader(unsigned int, unsigned int, unsigned short);
     unsigned short calculateCheckSum();
+    UDPPackage(const UDPPackage &other);
+    UDPPackage& operator=( const UDPPackage& other);
 private:
     QByteArray pseudoHeader;
 };

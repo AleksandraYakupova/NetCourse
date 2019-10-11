@@ -43,7 +43,7 @@
      <cstring>lEditRcvAddr</cstring>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lEditRcvPort">
+   <widget class="QLineEdit" name="lEditSndPort">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -95,7 +95,7 @@
      <string>Порт отправителя:</string>
     </property>
     <property name="buddy">
-     <cstring>lEditRcvPort</cstring>
+     <cstring>lEditSndPort</cstring>
     </property>
    </widget>
    <widget class="QLineEdit" name="lEditRcvAddr">
@@ -121,10 +121,10 @@
      <string>Порт получателя:</string>
     </property>
     <property name="buddy">
-     <cstring>lEditSndPort</cstring>
+     <cstring>lEditRcvPort</cstring>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lEditSndPort">
+   <widget class="QLineEdit" name="lEditRcvPort">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -144,7 +144,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>A</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="lblData">
